@@ -1,0 +1,44 @@
+<section class="content-header">
+  <h1>Financeiro<small>Crédito</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="home.credito">Crédito</a></li>
+    <li class="active">Crédito</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li ng-if="credCtrl.tabList" ng-class="{active: credCtrl.tabList}">
+          <a href data-target="#tabList" data-toggle="tab">
+          <i class="fa fa-bars"></i> Listar
+        </a>
+      </li>
+      <li ng-if="credCtrl.tabCreate">
+          <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Criar
+        </a>
+      </li>
+      <li ng-if="credCtrl.tabUpdate" ng-class="{active: credCtrl.tabUpdate}">
+          <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="credCtrl.tabDelete" ng-class="{active: credCtrl.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabList" ng-include="'view/credito/creditoList.html'" ng-if="credCtrl.tabList"
+          ng-class="{active: credCtrl.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'view/credito/creditoForm.html'" ng-if="credCtrl.tabCreate"></div>
+      <div class="tab-pane" id="tabUpdate" ng-include="'view/credito/creditoForm.html'"
+          ng-class="{active: credCtrl.tabUpdate}" ng-if="credCtrl.tabUpdate"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'view/credito/creditoForm.html'"
+          ng-class="{active: credCtrl.tabDelete}" ng-if="credCtrl.tabDelete"></div>
+    </div>
+  </div>
+</section>

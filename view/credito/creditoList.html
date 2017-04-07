@@ -1,0 +1,74 @@
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">CAIXAS</h3>
+
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+
+        <div class="box-body row">
+          <div class="form-group ">
+            <label class="col-sm-1 control-label">Caixa</label>
+            <div class="col-sm-2">
+              <select class="form-control " ng-model="credCtrl.caixaSelecionado" ng-change="credCtrl.change()">
+                <option ng-repeat="caixa in credCtrl.caixas | orderBy : 'mes' | orderBy : 'ano'" value="{{caixa._id}}" >{{caixa.nome}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Responsável</th>
+                <th>Status</th>
+                <th>Cliente</th>
+                <th>Crédito</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="credito in credCtrl.creditos">
+                <td>{{credito.tipo}}</td>
+                <td>{{credito.coletor}}</td>
+                <td>{{credito.status}}</td>
+                <td>{{credito.devedor}}</td>
+                <td>{{credito.statusCaixa}}</td>
+                <td>{{credito.data | date: "dd/MM/yyyy"}}</td>
+                <td>{{credito.valor | currency : "R$ " : 2}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-xs" ng-click="credCtrl.showTabUpdate(credito)">Alterar</button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="credCtrl.showTabDelete(credito)">Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right" ng-model="credCtrl.page" ng-if="credCtrl.needPagination">
+              <li><a href="" ng-click="credCtrl.prev()" ng-if="credCtrl.prev">Prev</a></li>
+              <li ng-repeat="pages in credCtrl.pagesArray"><a href="" ng-click="credCtrl.selectPage(pages)">{{pages}}</a></li>
+              <li><a href="" ng-click="credCtrl.next()" ng-if="credCtrl.next">Next</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>

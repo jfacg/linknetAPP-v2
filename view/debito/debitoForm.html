@@ -1,0 +1,87 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Dados do Débito</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Caixa</label>
+              <div class="col-sm-3">
+                <select class="form-control " ng-model="debCtrl.caixaSelecionado" ng-disabled="debCtrl.tabDelete">
+                  <option ng-repeat="caixa in debCtrl.caixas | orderBy : 'mes' | orderBy : 'ano'" value="{{caixa._id}}" >{{caixa.nome}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Tipo</label>
+              <div class="col-sm-3">
+                <select class="form-control "  ng-model="debCtrl.debito.tipo" ng-disabled="debCtrl.tabDelete">
+                  <option  ng-repeat="tipo in debCtrl.listaTipo" value={{tipo}} >{{tipo}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Responsável</label>
+              <div class="col-sm-3">
+                <select class="form-control " ng-model="debCtrl.debito.pagador" ng-disabled="debCtrl.tabDelete">
+                  <option ng-repeat="pagador in debCtrl.listaPagador" value="{{pagador}}">{{pagador}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Débito</label>
+              <div class="col-sm-3">
+                <select class="form-control " ng-model="debCtrl.debito.status" ng-disabled="debCtrl.tabDelete">
+                  <option ng-repeat="statusDebt in debCtrl.listaStatusDebt" model="{{statusDebt}}">{{statusDebt}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Status</label>
+              <div class="col-sm-3">
+                <select class="form-control " ng-model="debCtrl.debito.statusCaixa" ng-disabled="debCtrl.tabDelete">
+                  <option ng-repeat="statusCaixa in debCtrl.listaStatusCaixa" model="{{statusCaixa}}" >{{statusCaixa}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputFornecedor" class="col-sm-2 control-label">Fornecedor</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputFornecedor" placeholder="Fornecedor"
+                  ng-model="debCtrl.debito.credor" ng-readonly="debCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputDescricao" class="col-sm-2 control-label">Descrição</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição"
+                  ng-model="debCtrl.debito.descricao" ng-readonly="debCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputValor" class="col-sm-2 control-label">Valor</label>
+
+              <div class="col-sm-3">
+                <input type="number" class="form-control" id="inputValor" placeholder="Valor"
+                  ng-model="debCtrl.debito.valor" ng-readonly="debCtrl.tabDelete">
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" ng-click="debCtrl.create()" ng-if="debCtrl.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="debCtrl.update()" ng-if="debCtrl.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-danger" ng-click="debCtrl.delete()" ng-if="debCtrl.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-default" ng-click="debCtrl.refresh()">Cancel</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

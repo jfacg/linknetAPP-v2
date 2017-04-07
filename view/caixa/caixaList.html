@@ -1,0 +1,47 @@
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">CAIXAS</h3>
+
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Mês</th>
+                <th>Ano</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="caixa in caixaCtrl.caixas | orderBy : 'mes' | orderBy : 'ano'">
+                <td>{{caixa.nome}}</td>
+                <td>{{caixa.mes}}</td>
+                <td>{{caixa.ano}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-xs" ng-click="caixaCtrl.showTabUpdate(caixa)">Alterar</button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="caixaCtrl.showTabDelete(caixa)">Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>

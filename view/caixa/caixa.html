@@ -1,0 +1,44 @@
+<section class="content-header">
+  <h1>Financeiro<small>Caixa</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="home.caixa">Caixa</a></li>
+    <li class="active">Caixa</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li ng-if="caixaCtrl.tabList" ng-class="{active: caixaCtrl.tabList}">
+          <a href data-target="#tabList" data-toggle="tab">
+          <i class="fa fa-bars"></i> Listar
+        </a>
+      </li>
+      <li ng-if="caixaCtrl.tabCreate">
+          <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Criar
+        </a>
+      </li>
+      <li ng-if="caixaCtrl.tabUpdate" ng-class="{active: caixaCtrl.tabUpdate}">
+          <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="caixaCtrl.tabDelete" ng-class="{active: caixaCtrl.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabList" ng-include="'view/caixa/caixaList.html'" ng-if="caixaCtrl.tabList"
+          ng-class="{active: caixaCtrl.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'view/caixa/caixaForm.html'" ng-if="caixaCtrl.tabCreate"></div>
+      <div class="tab-pane" id="tabUpdate" ng-include="'view/caixa/caixaForm.html'"
+          ng-class="{active: caixaCtrl.tabUpdate}" ng-if="caixaCtrl.tabUpdate"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'view/caixa/caixaForm.html'"
+          ng-class="{active: caixaCtrl.tabDelete}" ng-if="caixaCtrl.tabDelete"></div>
+    </div>
+  </div>
+</section>

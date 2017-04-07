@@ -1,0 +1,44 @@
+<section class="content-header">
+  <h1>Financeiro<small>Débito</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="home.debito">Débito</a></li>
+    <li class="active">Débito</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li ng-if="debCtrl.tabList" ng-class="{active: debCtrl.tabList}">
+          <a href data-target="#tabList" data-toggle="tab">
+          <i class="fa fa-bars"></i> Listar
+        </a>
+      </li>
+      <li ng-if="debCtrl.tabCreate">
+          <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Criar
+        </a>
+      </li>
+      <li ng-if="debCtrl.tabUpdate" ng-class="{active: debCtrl.tabUpdate}">
+          <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="debCtrl.tabDelete" ng-class="{active: debCtrl.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabList" ng-include="'view/debito/debitoList.html'" ng-if="debCtrl.tabList"
+          ng-class="{active: debCtrl.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'view/debito/debitoForm.html'" ng-if="debCtrl.tabCreate"></div>
+      <div class="tab-pane" id="tabUpdate" ng-include="'view/debito/debitoForm.html'"
+          ng-class="{active: debCtrl.tabUpdate}" ng-if="debCtrl.tabUpdate"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'view/debito/debitoForm.html'"
+          ng-class="{active: debCtrl.tabDelete}" ng-if="debCtrl.tabDelete"></div>
+    </div>
+  </div>
+</section>
