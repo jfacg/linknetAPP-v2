@@ -23,7 +23,7 @@
           vm.colaboradores = response.data
           vm.colaborador = {}
           const dataAtual = new Date
-          // vm.paginate()
+          vm.paginate()
         })
       }
 

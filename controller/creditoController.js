@@ -8,8 +8,8 @@
 
     function CreditoController($http, tabs, toastr) {
       const vm = this
-      const url = 'http://localhost:3000/api'
-      // const url = 'http://www.linknetcg.com.br:3000/api'
+      // const url = 'http://localhost:3000/api'
+      const url = 'http://www.linknetcg.com.br:3000/api'
       const urlCredito = `${url}/credito`
       const urlCaixa = `${url}/caixa`
 
@@ -19,12 +19,12 @@
           geradorListas()
           vm.caixas = response.data
           vm.caixaAtual = {}
-          const dataAtual = new Date
+          var dataAtual = new Date;
           for (var i = 0; i < vm.caixas.length; i++) {
             if(vm.caixas[i].mes === dataAtual.getMonth()+1 && vm.caixas[i].ano === dataAtual.getFullYear()){
               vm.caixaAtual = vm.caixas[i]
           }}
-          vm.caixaSelecionado = vm.caixaAtual._id
+          vm.caixaSelecionado = vm.caixaAtual._id;
           vm.paginate()
         })
       }
@@ -89,6 +89,7 @@
 
       vm.create = function () {
         const createUrl = `${urlCredito}/${vm.caixaSelecionado}`
+        console.log(vm.credito);
         $http.post(createUrl, vm.credito).then(function (response) {
           toastr.success('Operação realizada com sucesso!!', 'Success')
           vm.refresh()

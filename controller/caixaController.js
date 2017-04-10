@@ -9,9 +9,10 @@
   function CaixaController ($http, tabs, toastr) {
     const vm = this;
     const url = 'http://localhost:3000/api/caixa';
+    // const url = 'http://www.linknetcg.com.br:3000/api/caixa';
 
     vm.refresh = function () {
-      $http.get(url).then(function (response) {
+    $http.get(url).then(function (response) {
         vm.caixa = {}
         vm.caixas = response.data
         tabs.show(vm, {tabList: true, tabCreate: true})
