@@ -76,11 +76,6 @@
       if(mes === 12){nome = `Dezembro/${ano}`}
       return nome
     }
-
-
-
-
-
     vm.refresh()
   };
 })()

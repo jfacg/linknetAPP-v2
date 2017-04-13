@@ -38,7 +38,6 @@
       }
 
       vm.delete = function () {
-        console.log(vm.colaborador);
         const deleteUrl = `${urlColaborador}/${vm.colaborador._id}`
         $http.delete(deleteUrl).then(function (response) {
           vm.refresh()

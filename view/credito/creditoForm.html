@@ -29,7 +29,7 @@
               <label class="col-sm-2 control-label">Responsável</label>
               <div class="col-sm-3">
                 <select class="form-control" ng-model="credCtrl.credito.coletor" ng-disabled="credCtrl.tabDelete">
-                  <option ng-repeat="coletor in credCtrl.listaColetor" value="{{coletor}}">{{coletor}}</option>
+                  <option ng-repeat="coletor in credCtrl.usuarios" value="{{coletor.nome}}">{{coletor.nome}}</option>
                 </select>
               </div>
             </div>

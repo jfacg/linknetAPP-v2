@@ -1,7 +1,7 @@
 var app = angular.module('linknetApp', [
   'ui.router',
   'toastr',
-  'ui.utils.masks',
+  'ngResource',
   'linknetServices',
   'linknetControllers',
   'linknetFactory'
@@ -71,8 +71,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   .state('home.resumo', {
     url: '/resumo',
     templateUrl: "view/resumo/resumo.html",
-    // controller: 'ResumoController',
-    // controllerAs: 'resCtrl',
-    // authenticate: true
+    controller: 'ResumoController',
+    controllerAs: 'resCtrl',
+    authenticate: true
   })
 })
