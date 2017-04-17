@@ -23,17 +23,19 @@
                 <th>Nome</th>
                 <th>Login</th>
                 <th>Email</th>
+                <th>Data</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="colaborador in colabCtrl.colaboradores | orderBy : 'mes' | orderBy : 'ano'">
-                <td>{{colaborador.nome}}</td>
-                <td>{{colaborador.login}}</td>
-                <td>{{colaborador.email}}</td>
+              <tr ng-repeat="usuario in userCtrl.usuarios | orderBy : 'mes' | orderBy : 'ano'">
+                <td>{{usuario.nome}}</td>
+                <td>{{usuario.login}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.dataNascimento | date: "dd/MM/yyyy"}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs" ng-click="colabCtrl.showTabUpdate(colaborador)">Alterar</button>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="colabCtrl.showTabDelete(colaborador)">Excluir</button>
+                  <button type="button" class="btn btn-primary btn-xs" ng-click="userCtrl.showTabUpdate(usuario)">Alterar</button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="userCtrl.showTabDelete(usuario)">Excluir</button>
                 </td>
               </tr>
             </tbody>

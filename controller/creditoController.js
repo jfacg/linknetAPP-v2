@@ -3,47 +3,18 @@
         '$http',
         'tabs',
         'toastr',
-        'UsuarioFactory',
-        'UsuarioService',
-        '$q',
         CreditoController
     ])
 
-    function CreditoController($http, tabs, toastr, UsuarioFactory, UsuarioService, $q) {
+    function CreditoController($http, tabs, toastr) {
         const vm = this
             // const url = 'http://localhost:3000/api'
         const url = 'http://www.linknetcg.com.br:3000/api'
         const urlCredito = `${url}/credito`
         const urlCaixa = `${url}/caixa`
 
-        var getUsuario = function() {
-          UsuarioFactory.query(function (data) {
-            vm.usuarios = data;
-          });
-
-        }
-        var getTeste = function() {
-          var defer = $q.defer();
-          var testes = UsuarioFactory.getUsuarios();
-
-          defer.promise.then(function () {
-              console.log('oi');
-          })
-
-
-        }
-
         vm.refresh = function() {
-          getTeste();
-            var teste = UsuarioFactory.getUsuario('jailson')
-            var testes = UsuarioFactory.getUsuarios();
-            testes.$promise.then(function(data) {
-              console.log(data[0]);
 
-            });
-            console.log(teste);
-            console.log(UsuarioFactory);
-            console.log(testes)
             tabs.show(vm, { tabList: true, tabCreate: true })
             $http.get(urlCaixa).then(function(response) {
                 // getUsuario();

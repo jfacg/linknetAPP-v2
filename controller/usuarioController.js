@@ -1,66 +1,62 @@
 (function () {
-  angular.module('linknetApp').controller('ColaboradorController', [
+  angular.module('linknetApp').controller('UsuarioController', [
     '$http',
     'tabs',
     'toastr',
-    ColaboradorController
+    'UsuarioService',
+    '$filter',
+    UsuarioController
   ])
 
-    function ColaboradorController($http, tabs, toastr) {
+    function UsuarioController($http, tabs, toastr, UsuarioService, $filter) {
       const vm = this
       const url = 'http://localhost:3000/api'
       // const url = 'http://www.linknetcg.com.br:3000/api'
-      const urlColaborador = `${url}/usuario`
+      const urlUsuario = `${url}/usuario`
 
       const geradorListas = function () {
         vm.listaTipo = ['ADMIN','TECNICO','FINANCEIRO']
       }
 
       vm.refresh = function () {
-        tabs.show(vm, {tabList: true, tabCreate: true})
-        $http.get(urlColaborador).then(function (response) {
-          geradorListas()
-          vm.colaboradores = response.data
-          vm.colaborador = {}
-          const dataAtual = new Date
+        tabs.show(vm, {tabList: true, tabCreate: true});
+        const dataAtual = new Date;
+        vm.usuario = {};
+        vm.usuario.dataNascimento = dataAtual;
+        geradorListas();
+
+        const getUsuarios = UsuarioService.getUsuarios();
+        getUsuarios.$promise.then(function (data) {
+
+          for (var i = 0; i < data.length; i++) {
+            data[i].dataNascimento = new Date(data[i].dataNascimento)
+          }
+          vm.usuarios = data;
           vm.paginate()
-        })
-      }
+        });
+      };
 
       vm.create = function () {
-        const createUrl = `${urlColaborador}`
-        $http.post(createUrl, vm.colaborador).then(function (response) {
-          vm.refresh()
-          toastr.success('Operação realizada com sucesso!!', 'Success')
-        }).catch(function (response) {
-          toastr.error(response.data.errors, 'Error');
-        })
-      }
+        // let data = $filter('date')(vm.usuario.dataNascimento, "dd/MM/yyyy" )
+        // vm.usuario.dataNascimento = data;
+        UsuarioService.saveUsuario(vm.usuario);
+        vm.refresh();
+      };
 
       vm.delete = function () {
-        const deleteUrl = `${urlColaborador}/${vm.colaborador._id}`
-        $http.delete(deleteUrl).then(function (response) {
-          vm.refresh()
-          toastr.success('Operação realizada com sucesso!!', 'Success')
-        }).catch(function (response) {
-          toastr.error(response.data.errors, 'Error');
-        })
+        UsuarioService.deleteUsuario(vm.usuario._id);
+        vm.refresh();
       }
 
       vm.update = function () {
-        const updateUrl = `${urlColaborador}/${vm.colaborador._id}`
-        $http.put(updateUrl, vm.colaborador).then(function (response) {
-          vm.refresh()
-          toastr.success('Operação realizada com sucesso!!', 'Success')
-        }).catch(function (response) {
-          toastr.error(response.data.errors, 'Error');
-        })
+        UsuarioService.updateUsuario(vm.usuario._id, vm.usuario);
+        vm.refresh();
       }
 
       vm.paginate = function () {
         if (vm.caixaSelecionado != null) {
           vm.pages = 0
-          const urlCount = `${urlColaborador}Count/${vm.caixaSelecionado}`
+          const urlCount = `${urlUsuario}Count/${vm.caixaSelecionado}`
           $http.get(urlCount).then(function (response) {
             vm.skip = 0
             vm.limit = 5
@@ -102,13 +98,13 @@
         vm.paginate()
       }
 
-      vm.showTabUpdate = function (colaborador) {
-        vm.colaborador = colaborador
+      vm.showTabUpdate = function (usuario) {
+        vm.usuario = usuario
         tabs.show(vm, {tabUpdate:true})
       }
 
-      vm.showTabDelete = function (colaborador) {
-        vm.colaborador = colaborador
+      vm.showTabDelete = function (usuario) {
+        vm.usuario = usuario
         tabs.show(vm, {tabDelete:true})
       }
 

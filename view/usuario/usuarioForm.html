@@ -1,0 +1,68 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Dados do Colaborador</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <div class="form-group ">
+              <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputNome" placeholder="Nome"
+                  ng-model="userCtrl.usuario.nome" ng-readonly="userCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-4">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email"
+                  ng-model="userCtrl.usuario.email" ng-readonly="userCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputDataNascimento" class="col-sm-2 control-label">Data Nascimento</label>
+              <div class="col-sm-4">
+                <input type="date" class="form-control" id="inputDataNascimento"
+                  ng-model="userCtrl.usuario.dataNascimento" ng-readonly="userCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Nível</label>
+              <div class="col-sm-3">
+                <select class="form-control" ng-model="userCtrl.usuario.tipo" ng-disabled="userCtrl.tabDelete" >
+                  <option ng-repeat="tipo in userCtrl.listaTipo" value={{tipo}} >{{tipo}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputUsuario" class="col-sm-2 control-label">Usuário</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputUsuario" placeholder="Usuário"
+                  ng-model="userCtrl.usuario.login" ng-readonly="userCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+            <div class="form-group ">
+              <label for="inputSenha" class="col-sm-2 control-label">Senha</label>
+              <div class="col-sm-4">
+                <input type="password" class="form-control" id="inputSenha"
+                  ng-model="userCtrl.usuario.senha" ng-readonly="userCtrl.tabDelete" uppercase>
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" ng-click="userCtrl.create()" ng-if="userCtrl.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="userCtrl.update()" ng-if="userCtrl.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-danger" ng-click="userCtrl.delete()" ng-if="userCtrl.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-default" ng-click="userCtrl.refresh()">Cancelar</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

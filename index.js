@@ -61,11 +61,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     controllerAs: 'debCtrl',
     authenticate: true
   })
-  .state('home.colaborador', {
-    url: '/colaborador',
-    templateUrl: "view/colaborador/colaborador.html",
-    controller: 'ColaboradorController',
-    controllerAs: 'colabCtrl',
+  .state('home.usuario', {
+    url: '/usuario',
+    templateUrl: "view/usuario/usuario.html",
+    controller: 'UsuarioController',
+    controllerAs: 'userCtrl',
     authenticate: true
   })
   .state('home.resumo', {
