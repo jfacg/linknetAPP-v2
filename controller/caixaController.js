@@ -3,16 +3,17 @@
     '$http',
     'tabs',
     'toastr',
+    'UrlFactory',
     CaixaController
   ]);
 
-  function CaixaController ($http, tabs, toastr) {
+  function CaixaController ($http, tabs, toastr, UrlFactory) {
     const vm = this;
-    const url = 'http://localhost:3000/api/caixa';
-    // const url = 'http://www.linknetcg.com.br:3000/api/caixa';
+    const url = UrlFactory;
+    const urlCaixa = `${url}/caixa`
 
     vm.refresh = function () {
-    $http.get(url).then(function (response) {
+    $http.get(urlCaixa).then(function (response) {
         vm.caixa = {}
         vm.caixas = response.data
         tabs.show(vm, {tabList: true, tabCreate: true})
@@ -21,27 +22,27 @@
 
     vm.create = function () {
       vm.caixa.nome = nomeCaixa(vm.caixa.mes, vm.caixa.ano);
-      $http.post(url,vm.caixa).then(function (response) {
+      $http.post(urlCaixa,vm.caixa).then(function (response) {
         toastr.success('Operação realizada com sucesso!!', 'Success')
         vm.refresh();
       }).catch(function (response) {
         toastr.error(response.data.errors, 'Error');
-      })
-    }
+      });
+    };
 
     vm.update = function () {
       vm.caixa.nome = nomeCaixa(vm.caixa.mes, vm.caixa.ano)
-      const updateUrl = `${url}/${vm.caixa._id}`
+      const updateUrl = `${urlCaixa}/${vm.caixa._id}`
       $http.put(updateUrl, vm.caixa).then(function (response) {
         toastr.success('Operação realizada com sucesso!!', 'Success')
         vm.refresh()
       }).catch(function (response) {
         toastr.error(response.data.errors, 'Error');
-      })
-    }
+      });
+    };
 
     vm.delete = function () {
-      const deleteUrl = `${url}/${vm.caixa._id}`
+      const deleteUrl = `${urlCaixa}/${vm.caixa._id}`
       $http.delete(deleteUrl).then(function (response) {
         toastr.success('Operação realizada com sucesso!!', 'Success')
         vm.refresh()

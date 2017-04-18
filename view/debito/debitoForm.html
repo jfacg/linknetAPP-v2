@@ -29,7 +29,7 @@
               <label class="col-sm-2 control-label">Responsável</label>
               <div class="col-sm-3">
                 <select class="form-control " ng-model="debCtrl.debito.pagador" ng-disabled="debCtrl.tabDelete">
-                  <option ng-repeat="pagador in debCtrl.listaPagador" value="{{pagador}}">{{pagador}}</option>
+                  <option ng-repeat="pagador in debCtrl.usuarios" value="{{pagador.nome}}">{{pagador.nome}}</option>
                 </select>
               </div>
             </div>

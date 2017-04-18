@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="credito in credCtrl.creditos">
+              <tr ng-repeat="credito in credCtrl.creditos | orderBy: '-data'">
                 <td>{{credito.tipo}}</td>
                 <td>{{credito.coletor}}</td>
                 <td>{{credito.status}}</td>

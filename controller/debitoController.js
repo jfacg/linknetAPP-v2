@@ -3,18 +3,18 @@
     '$http',
     'tabs',
     'toastr',
+    'UrlFactory',
     DebitoController
   ])
 
-    function DebitoController($http, tabs, toastr) {
+    function DebitoController($http, tabs, toastr, UrlFactory) {
       const vm = this
-      const url = 'http://localhost:3000/api'
-      // const url = 'http://www.linknetcg.com.br:3000/api'
+      const url = UrlFactory;
       const urlDebito = `${url}/debito`
       const urlCaixa = `${url}/caixa`
 
       vm.refresh = function () {
-        tabs.show(vm, {tabList: true, tabCreate: true})
+        tabs.show(vm, { tabList: true, tabCreate: true });
         $http.get(urlCaixa).then(function (response) {
           geradorListas()
           vm.caixas = response.data
@@ -25,66 +25,30 @@
               vm.caixaAtual = vm.caixas[i]
           }}
           vm.caixaSelecionado = vm.caixaAtual._id
-          vm.paginate()
+          vm.refreshDebitos();
+          vm.getUsuarios();
         })
-      }
+      };
 
-      vm.paginate = function () {
-        if (vm.caixaSelecionado != null) {
-          vm.pages = 0
-          const urlCount = `${urlDebito}Count/${vm.caixaSelecionado}`
-          $http.get(urlCount).then(function (response) {
-            vm.skip = 0
-            vm.limit = 5
-            vm.pages = Math.ceil(response.data.value / vm.limit)
-            vm.pagesArray = Array(vm.pages).fill(0).map((e,i) => i+1)
-            vm.current = 1
-            vm.needPagination = vm.pages > 1
-            vm.Prev = vm.current > 1
-            vm.Next = vm.current < vm.pages
+      vm.getUsuarios = function () {
+        const urlUsuarios = `${url}/usuario`
+        $http.get(urlUsuarios).then(function(response) {
+            vm.usuarios = response.data
+        });
+      };
 
-            vm.selectPage = function (page) {
-              vm.current  = page
-              if (vm.current >= 1) {
-                vm.skip = (vm.current-1)*vm.limit
-                vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
-              }
-            }
-
-            vm.next = function() {
-              if(vm.current >= 1 && vm.current < vm.pages){
-                vm.current += 1
-                vm.skip = (vm.current-1)*vm.limit
-                vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
-              }
-            }
-
-            vm.prev = function() {
-              if(vm.current > 1){
-                 vm.current -= 1
-                 vm.skip = (vm.current-1)*vm.limit
-                 vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
-            }}
-            vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
-          })
-        }
-      }
-
-      vm.refreshDebitos = function (id, skip, limit) {
-        const urlRefresh = `${urlDebito}/${id}/${skip}/${limit}`
+      vm.refreshDebitos = function () {
+        const urlRefresh = `${urlDebito}/${vm.caixaSelecionado}`;
         $http.get(urlRefresh).then(function (response) {
           vm.debitos = response.data
           vm.debito = {valor: 0, data:new Date}
         })
-      }
-
-
+      };
 
       const geradorListas = function () {
         vm.listaTipo = ['COMPRA','SALARIO','CONTA','OUTRO']
         vm.listaStatusDebt = ["PAGO", "AGENDADO", "PENDENTE", "CANCELADO"]
         vm.listaStatusCaixa = ["LOJA", "PROPRIO"]
-        vm.listaPagador = ["DANIEL", "IZAQUE", "JAILSON", "JOSUE", "JUAN"]
       }
 
       vm.create = function () {
@@ -130,6 +94,57 @@
         vm.debito = debito
         tabs.show(vm, {tabDelete:true})
       }
+
+      vm.paginate = function () {
+        if (vm.caixaSelecionado != null) {
+          vm.pages = 0
+          const urlCount = `${urlDebito}Count/${vm.caixaSelecionado}`
+          $http.get(urlCount).then(function (response) {
+            vm.skip = 0
+            vm.limit = 5
+            vm.pages = Math.ceil(response.data.value / vm.limit)
+            vm.pagesArray = Array(vm.pages).fill(0).map((e,i) => i+1)
+            vm.current = 1
+            vm.needPagination = vm.pages > 1
+            vm.Prev = vm.current > 1
+            vm.Next = vm.current < vm.pages
+
+            vm.selectPage = function (page) {
+              vm.current  = page
+              if (vm.current >= 1) {
+                vm.skip = (vm.current-1)*vm.limit
+                vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
+              }
+            }
+
+            vm.next = function() {
+              if(vm.current >= 1 && vm.current < vm.pages){
+                vm.current += 1
+                vm.skip = (vm.current-1)*vm.limit
+                vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
+              }
+            }
+
+            vm.prev = function() {
+              if(vm.current > 1){
+                 vm.current -= 1
+                 vm.skip = (vm.current-1)*vm.limit
+                 vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
+            }}
+            vm.refreshDebitos(vm.caixaSelecionado, vm.skip, vm.limit)
+          })
+        }
+      }
+
+      // vm.refreshDebitos = function (id, skip, limit) {
+      //   const urlRefresh = `${urlDebito}/${id}/${skip}/${limit}`
+      //   $http.get(urlRefresh).then(function (response) {
+      //     vm.debitos = response.data
+      //     vm.debito = {valor: 0, data:new Date}
+      //   })
+      // };
+
+
 
       vm.refresh()
     }

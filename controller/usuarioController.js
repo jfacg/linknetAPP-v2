@@ -3,15 +3,13 @@
     '$http',
     'tabs',
     'toastr',
-    'UsuarioService',
-    '$filter',
+    'UrlFactory',
     UsuarioController
   ])
 
-    function UsuarioController($http, tabs, toastr, UsuarioService, $filter) {
+    function UsuarioController($http, tabs, toastr, UrlFactory) {
       const vm = this
-      const url = 'http://localhost:3000/api'
-      // const url = 'http://www.linknetcg.com.br:3000/api'
+      const url = UrlFactory;
       const urlUsuario = `${url}/usuario`
 
       const geradorListas = function () {
@@ -22,36 +20,44 @@
         tabs.show(vm, {tabList: true, tabCreate: true});
         const dataAtual = new Date;
         vm.usuario = {};
-        vm.usuario.dataNascimento = dataAtual;
         geradorListas();
-
-        const getUsuarios = UsuarioService.getUsuarios();
-        getUsuarios.$promise.then(function (data) {
-
-          for (var i = 0; i < data.length; i++) {
-            data[i].dataNascimento = new Date(data[i].dataNascimento)
+        $http.get(urlUsuario).then(function (response) {
+          for (var i = 0; i < response.data.length; i++) {
+            response.data[i].dataNascimento = new Date(response.data[i].dataNascimento);
           }
-          vm.usuarios = data;
-          vm.paginate()
+          vm.usuarios = response.data;
         });
       };
 
       vm.create = function () {
-        // let data = $filter('date')(vm.usuario.dataNascimento, "dd/MM/yyyy" )
-        // vm.usuario.dataNascimento = data;
-        UsuarioService.saveUsuario(vm.usuario);
-        vm.refresh();
+        $http.post(urlUsuario,vm.usuario).then(function (response) {
+          toastr.success('Operação realizada com sucesso!!', 'Success')
+          vm.refresh();
+        }).catch(function (response) {
+          toastr.error(response.data.errors, 'Error');
+        });
       };
 
       vm.delete = function () {
-        UsuarioService.deleteUsuario(vm.usuario._id);
+        const deleteUrl = `${urlUsuario}/${vm.usuario._id}`
+        $http.delete(deleteUrl).then(function (response) {
+          toastr.success('Operação realizada com sucesso!!', 'Success')
+          vm.refresh();
+        }).catch(function (response) {
+          toastr.error(response.data.errors, 'Error');
+        });
         vm.refresh();
       }
 
       vm.update = function () {
-        UsuarioService.updateUsuario(vm.usuario._id, vm.usuario);
-        vm.refresh();
-      }
+        const updateUrl = `${urlUsuario}/${vm.usuario._id}`
+        $http.put(updateUrl, vm.usuario).then(function (response) {
+          toastr.success('Operação realizada com sucesso!!', 'Success')
+          vm.refresh();
+        }).catch(function (response) {
+          toastr.error(response.data.errors, 'Error');
+        });
+      };
 
       vm.paginate = function () {
         if (vm.caixaSelecionado != null) {
