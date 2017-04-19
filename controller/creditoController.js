@@ -53,7 +53,7 @@
         const geradorListas = function() {
             vm.listaTipo = ['MENSALIDADE', 'INSTALACAO', 'VENDA', 'EMPRESTIMO', 'OUTROS']
             vm.listaStatusCred = ["RECEBIDO", "AGENDADO", "PENDENTE", "CANCELADO"]
-            vm.listaStatusCaixa = ["REPASSADO", "NAO REPASSADO"]
+            vm.listaStatusCaixa = ["REPASSADO", "NAO REPASSADO", "OUTROS"]
         }
 
 
