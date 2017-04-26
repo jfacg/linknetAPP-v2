@@ -4,10 +4,11 @@
     'tabs',
     'toastr',
     'UrlFactory',
+    'UserService',
     UsuarioController
   ])
 
-    function UsuarioController($http, tabs, toastr, UrlFactory) {
+    function UsuarioController($http, tabs, toastr, UrlFactory, UserService) {
       const vm = this
       const url = UrlFactory;
       const urlUsuario = `${url}/usuario`

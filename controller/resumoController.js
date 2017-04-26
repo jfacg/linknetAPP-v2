@@ -8,10 +8,26 @@
 
   function ResumoController($http, toastr, UrlFactory) {
     const vm = this;
-    const urlCredito = `${UrlFactory}/credito/58e63c54884d7f04a0a44819`
+
     vm.refresh = function () {
+      const urlCaixa = `${UrlFactory}/caixa`
+      $http.get(urlCaixa).then(function(response) {
+        vm.caixas = response.data
+        vm.caixaAtual = {}
+        var dataAtual = new Date;
+        for (var i = 0; i < vm.caixas.length; i++) {
+            if (vm.caixas[i].mes === dataAtual.getMonth() + 1 && vm.caixas[i].ano === dataAtual.getFullYear()) {
+                vm.caixaAtual = vm.caixas[i]
+            }
+        }
+        vm.caixaSelecionado = vm.caixaAtual._id;
+        vm.refreshResumo();
 
+      });
+    };
 
+    vm.refreshResumo = function () {
+      const urlCredito = `${UrlFactory}/credito/${vm.caixaSelecionado}`
       $http.get(urlCredito).then(function (response) {
           vm.creditos = response.data;
 
@@ -36,9 +52,8 @@
               }
             }
           }
-
         });
-      };
+    }
 
       var getColetores =  function (creditos) {
         var coletores = [];

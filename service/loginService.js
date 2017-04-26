@@ -37,11 +37,10 @@ app.service('Storage',function($window){
 
 });
 
-app.service('UserService',function($http,Storage){
-
+app.service('UserService',function($http,Storage, UrlFactory){
       this.login = function(user){
-        // return $http.post('http://localhost:3000/api/autenticar',user,{headers:{'Content-Type': 'application/json'}});
-        return $http.post('http://www.linknetcg.com.br:3000/api/autenticar',user,{headers:{'Content-Type': 'application/json'}});
+        // return $http.post('http://www.linknetcg.com.br:3000/api/autenticar',user,{headers:{'Content-Type': 'application/json'}});
+        return $http.post('http://localhost:3000/api/autenticar',user,{headers:{'Content-Type': 'application/json'}});
       };
 
       this.logout = function(){

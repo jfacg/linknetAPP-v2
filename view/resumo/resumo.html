@@ -7,53 +7,65 @@
   </ol>
 </section>
 
-<section class="content">
+<section class="content-header">
   <div class="row">
-
-    <div class="col-md-4" ng-repeat="item in resCtrl.resumo">
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-aqua-active">
-              <h3 class="widget-user-username">{{item.coletor}}</h3>
-              <!-- <h5 class="widget-user-desc">Administrador</h5> -->
-            </div>
-            <div class="widget-user-image">
-              <img class="img-circle" src="./node_modules/admin-lte/dist/img/user1-128x128.jpg" alt="User Avatar">
-            </div>
-            <div class="box-footer">
-              <div class="row">
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">{{item.totalCreditos | currency : "R$ " : 2}}</h5>
-                    <span class="description-text">Total</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">{{item.totalRetido | currency : "R$ " : 2}}</h5>
-                    <span class="description-text">Retido</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="description-block">
-                    <h5 class="description-header">{{item.totalRepassado | currency : "R$ " : 2}}</h5>
-                    <span class="description-text">Repassado</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-          </div>
-          <!-- /.widget-user -->
-        </div>
-
+    <div class="form-group ">
+      <div class="col-sm-2">
+        <label>CAIXA</label>
+        <select class="form-control " ng-model="resCtrl.caixaSelecionado" ng-change="resCtrl.refreshResumo()">
+          <option ng-repeat="caixa in resCtrl.caixas | orderBy : 'mes' | orderBy : 'ano'" value="{{caixa._id}}" >{{caixa.nome}}</option>
+        </select>
       </div>
-      <!-- row 2 -->
+    </div>
+  </div>
+</section>
+
+<section class="content ">
+  <div class="row">
+    <div class="col-md-4" ng-repeat="item in resCtrl.resumo">
+      <!-- Widget: user widget style 1 -->
+      <div class="box box-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-aqua-active">
+          <h3 class="widget-user-username">{{item.coletor}}</h3>
+          <!-- <h5 class="widget-user-desc">Administrador</h5> -->
+        </div>
+        <div class="widget-user-image">
+          <img class="img-circle" src="./node_modules/admin-lte/dist/img/user1-128x128.jpg" alt="User Avatar">
+        </div>
+        <div class="box-footer">
+          <div class="row">
+            <div class="col-sm-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">{{item.totalCreditos | currency : "R$ " : 2}}</h5>
+                <span class="description-text">Total Geral</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 border-right">
+              <div class="description-block">
+                <h5 class="description-header">{{item.totalRetido | currency : "R$ " : 2}}</h5>
+                <span class="description-text">Retido</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4">
+              <div class="description-block">
+                <h5 class="description-header">{{item.totalRepassado | currency : "R$ " : 2}}</h5>
+                <span class="description-text">Repassado</span>
+              </div>
+              <!-- /.description-block -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+      <!-- /.widget-user -->
+    </div>
+
+  </div>
+    <!-- row 2 -->
 </section>

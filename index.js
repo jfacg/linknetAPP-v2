@@ -2,7 +2,9 @@ var app = angular.module('linknetApp', [
   'ui.router',
   'toastr',
   'ngResource',
+  'ui.utils.masks',
   'linknetServices',
+  'angular-jwt',
   'linknetControllers',
   'linknetFactory'
 ])
@@ -73,6 +75,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: "view/resumo/resumo.html",
     controller: 'ResumoController',
     controllerAs: 'resCtrl',
+    authenticate: true
+  })
+  .state('home.agenda', {
+    url: '/agenda',
+    templateUrl: "view/agenda/agenda.html",
+    controller: 'AgendaController',
+    controllerAs: 'vm',
     authenticate: true
   })
 })

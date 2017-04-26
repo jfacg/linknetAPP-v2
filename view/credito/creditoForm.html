@@ -66,8 +66,8 @@
             <div class="form-group">
               <label for="inputValor" class="col-sm-2 control-label">Valor</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputValor" placeholder="Valor"
-                  ng-model="credCtrl.credito.valor" ng-readonly="credCtrl.tabDelete">
+                <input type="text" class="form-control" id="inputValor"
+                  ng-model="credCtrl.credito.valor" ng-readonly="credCtrl.tabDelete" ui-money-mask="2">
               </div>
             </div>
           </div>
