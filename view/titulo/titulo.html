@@ -1,0 +1,102 @@
+<section class="content-header">
+  <h1>Financeiro<small>Títulos</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="home.titulo">Título</a></li>
+    <li class="active">Título</li>
+  </ol>
+</section>
+
+<section class="content">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">TÍTULOS VENCIDOS</h3>
+
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control pull-right" 
+                ng-model="listar" placeholder="Search">
+
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Contato</th>
+                <th>Endereço</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="titulo in vm.titulos | filter:listar | orderBy: 'data'" >
+                <td>{{titulo.nome}}</td>
+                <td>{{titulo.datavenc | date: "dd/MM/yyyy"}}</td>
+                <td>{{titulo.calculado | currency : "R$ " : 2}}</td>
+                <td>{{titulo.celular}}</td>
+                <td>{{titulo.endereco}}</td>
+                <td>{{titulo.statusCliente}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right" ng-model="vm.page" ng-if="vm.needPagination">
+              <li><a href="" ng-click="vm.prev()" ng-if="vm.prev">Prev</a></li>
+              <li ng-repeat="pages in vm.pagesArray"><a href="" ng-click="vm.selectPage(pages)">{{pages}}</a></li>
+              <li><a href="" ng-click="vm.next()" ng-if="vm.next">Next</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+
+  <!--<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li ng-if="vm.tabList" ng-class="{active: vm.tabList}">
+          <a href data-target="#tabList" data-toggle="tab">
+          <i class="fa fa-bars"></i> Listar
+        </a>
+      </li>
+      <li ng-if="vm.tabCreate">
+          <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Criar
+        </a>
+      </li>
+      <li ng-if="vm.tabUpdate" ng-class="{active: vm.tabUpdate}">
+          <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="vm.tabDelete" ng-class="{active: vm.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabList" ng-include="'view/titulo/tituloList.html'" ng-if="vm.tabList"
+          ng-class="{active: vm.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'view/titulo/tituloForm.html'" ng-if="vm.tabCreate"></div>
+      <div class="tab-pane" id="tabUpdate" ng-include="'view/titulo/tituloForm.html'"
+          ng-class="{active: vm.tabUpdate}" ng-if="vm.tabUpdate"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'view/titulo/tituloForm.html'"
+          ng-class="{active: vm.tabDelete}" ng-if="vm.tabDelete"></div>
+    </div>
+  </div>-->
+</section>

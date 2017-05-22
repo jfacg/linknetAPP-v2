@@ -1,0 +1,45 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Reparos</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="box-body">
+          <dl class="dl-horizontal">
+            <dt>Solicitante:</dt>
+            <dd>{{vm.reparo.solicitante}}</dd>
+            <dt>Contato:</dt>
+            <dd>{{vm.reparo.contato}}</dd>
+            <dt>Endereço:</dt>
+            <dd>{{vm.reparo.endereco}}</dd>
+            <dt>Bairro:</dt>
+            <dd>{{vm.reparo.bairro}}</dd>
+            <dt>Reclamação:</dt>
+            <dd>{{vm.reparo.reclamacao}}</dd>
+            <dt>Defeito:</dt>
+            <dd>{{vm.reparo.defeito}}</dd>
+            <dt>Solução:</dt>
+            <dd>{{vm.reparo.solucao}}</dd>
+            <dt>Técnico:</dt>
+            <dd>{{vm.reparo.tecnico}}</dd>
+            <dt>Data Registro:</dt>
+            <dd>{{vm.reparo.dataRegistro | date: "dd/MM/yyyy"}}</dd>
+            <dt>Data Agendada:</dt>
+            <dd>{{vm.reparo.dataAgenda | date: "dd/MM/yyyy"}}</dd>
+            <dt>Data Baixa:</dt>
+            <dd>{{vm.reparo.dataBaixa | date: "dd/MM/yyyy"}}</dd>
+            <dt>Baixado:</dt>
+            <dd>{{vm.reparo.baixado}}</dd>
+            <dt>Usuario:</dt>
+            <dd>{{vm.reparo.usuario}}</dd>
+          </dl>
+        </div>
+        <div class="box-footer">
+          <button type="submit" class="btn btn-default" ng-click="vm.voltar()">Voltar</button>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,73 @@
+<section class="content-header">
+  <h1>Reparo<small>Agendamento</small></h1>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+    <li><a ui-sref="home.reparo">Reparo</a></li>
+    <li class="active">Reparo</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li ng-if="vm.tabListAbertos" ng-class="{active: vm.tabListAbertos}">
+          <a href data-target="#tabListAbertos" data-toggle="tab">
+          <i class="fa fa-bars"></i> Abertos
+        </a>
+      </li>
+      <li ng-if="vm.tabListFechados">
+          <a href data-target="#tabListFechados" data-toggle="tab">
+          <i class="fa fa-bars"></i> Fechados
+        </a>
+      </li>
+      <li ng-if="vm.tabCreate">
+          <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Criar
+        </a>
+      </li>
+      <li ng-if="vm.tabUpdate" ng-class="{active: vm.tabUpdate}">
+          <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="vm.tabBaixa" ng-class="{active: vm.tabBaixa}">
+          <a href data-target="#tabBaixa" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Baixar
+        </a>
+      </li>
+      <li ng-if="vm.tabDelete" ng-class="{active: vm.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+      <li ng-if="vm.tabVisualizar" ng-class="{active: vm.tabVizualizar}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-list"></i> Visualizar
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabListAbertos" ng-include="'modulos/agenda/reparo/reparoListAbertos.html'" 
+          ng-if="vm.tabListAbertos" ng-class="{active: vm.tabListAbertos}"></div>
+
+      <div class="tab-pane" id="tabListFechados" ng-include="'modulos/agenda/reparo/reparoListFechados.html'" 
+          ng-if="vm.tabListFechados"></div>
+
+      <div class="tab-pane" id="tabCreate" ng-include="'modulos/agenda/reparo/reparoForm.html'" 
+          ng-if="vm.tabCreate"></div>
+
+      <div class="tab-pane" id="tabUpdate" ng-include="'modulos/agenda/reparo/reparoForm.html'"
+          ng-class="{active: vm.tabUpdate}" ng-if="vm.tabUpdate"></div>
+
+      <div class="tab-pane" id="tabBaixa" ng-include="'modulos/agenda/reparo/reparoBaixaForm.html'"
+          ng-class="{active: vm.tabBaixa}" ng-if="vm.tabBaixa"></div>
+
+      <!--<div class="tab-pane" id="tabDelete" ng-include="'modulos/agenda/reparo/reparoForm.html'"
+          ng-class="{active: vm.tabDelete}" ng-if="vm.tabDelete"></div>-->
+      
+      <div class="tab-pane" id="tabVisualizar" ng-include="'modulos/agenda/reparo/reparoImpressao.html'"
+          ng-class="{active: vm.tabVisualizar}" ng-if="vm.tabVisualizar"></div>
+          
+    </div>
+  </div>
+</section>

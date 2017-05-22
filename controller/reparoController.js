@@ -1,16 +1,16 @@
 (function () {
-  angular.module('linknetApp').controller('AgendaController',[
+  angular.module('linknetApp').controller('ReparoController',[
     '$http',
     'tabs',
     'toastr',
     'UrlFactory',
-    AgendaController
+    ReparoController
   ]);
 
-  function AgendaController ($http, tabs, toastr, UrlFactory) {
+  function ReparoController ($http, tabs, toastr, UrlFactory) {
     const vm = this;
     const url = UrlFactory;
-    const urlAgenda = `${url}/agenda`;
+    const urlAgenda = `${url}/reparo`;
     const urlUsuario = `${url}/usuario`;
 
     vm.checkboxModel = {value1: 'ABERTO', value2: 'FECHADO'};

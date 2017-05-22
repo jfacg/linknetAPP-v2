@@ -1,0 +1,217 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Baixar Instalação</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <!--FORMULARIO-->
+            <form role="form">
+              <!-- text input SOLICITANTE-->
+              <div class="form-group ">
+                <label for="inputSolicitante" class="col-sm-2 control-label">Solicitante</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputSolicitante" placeholder="Solicitante" ng-model="vm.instalacao.solicitante"
+                    uppercase ng-change="vm.instalacao.solicitante = (vm.instalacao.solicitante | uppercase)">
+                </div>
+              </div>
+              <!-- text input INFORMACOES-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Informações</label>
+                <div class="col-sm-3">
+                  <textarea class="form-control" rows="4" placeholder="Informações" ng-model="vm.instalacao.informacoes" ng-readonly="vm.tabBaixa"
+                    uppercase ng-change="vm.instalacao.informacoes = (vm.instalacao.informacoes | uppercase)">
+                    </textarea>
+                </div>
+              </div>
+              <!-- select TECNICO-->
+              <div class="form-group ">
+                <label class="col-sm-2 control-label">Técnico</label>
+                <div class="col-sm-3">
+                  <select class="form-control" ng-model="vm.instalacao.tecnico" ng-disabled="vm.tabDelete">
+                      <option ng-repeat="item in vm.usuarios" value={{item}} >{{item}}</option>
+                    </select>
+                </div>
+              </div>
+              <!--CHECKBOX-->
+              <div class="form-group ">
+                  <label class="col-sm-2 control-label">Instalado</label>
+                  <div class="col-sm-1">
+                    <input type="checkbox" ng-model="vm.instalacao.instalado" ng-true-value="'S'">
+                  </div>
+              </div>
+              <div class="form-group ">
+                  <label class="col-sm-2 control-label">Baixar</label>
+                  <div class="col-sm-1">
+                    <input type="checkbox" ng-model="vm.instalacao.baixado" ng-true-value="'S'">
+                  </div>
+              </div>
+
+              <!-- text input PAGAMENTO INSTALACÃO-->
+              <div class="form-group ">
+                <label for="inputSolicitante" class="col-sm-2 control-label">Pagamento</label>
+                <div class="col-sm-3">
+                  <input type="Number" class="form-control" ng-model="vm.instalacao.parcela" min="1" ng-readonly="vm.tabDelete">
+                </div>
+              </div>
+
+              <!-- text input VALOR DA INSTALACAO-->
+              <div class="form-group ">
+                <label for="inputSolicitante" class="col-sm-2 control-label">Valor Instalação</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" placeholder="R$ 0,00" ng-model="vm.instalacao.valorInstalacao" ng-readonly="vm.tabDelete" ui-money-mask="2">
+                </div>
+              </div>
+              <!-- text input VALOR DA MENSALIDADE-->
+              <div class="form-group ">
+                <label for="inputSolicitante" class="col-sm-2 control-label">Valor Mensalidade</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" placeholder="R$ 0,00" ng-model="vm.instalacao.valorMensalidade" ng-readonly="vm.tabDelete" ui-money-mask="2">
+                </div>
+              </div>
+              
+
+              <!--MODAL-->
+              <div class="box-footer">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">Adicionar Material</button>
+              </div>
+
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                      <h4 class="modal-title">Default Modal</h4>
+                    </div>
+                    <div class="modal-body">
+
+                      <!--MATERIAL-->
+                      <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Material</th>
+                              <th>Quantidade</th>
+                              <th>Ações</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <select class="form-control" ng-model="vm.materialId" ng-disabled="vm.tabDelete">
+                          <option ng-repeat="item in vm.listaMateriais" value={{item._id}} >{{item.nome}}</option>
+                        </select>
+                              </td>
+                              <td>
+                                <input type="number" class="form-control" id="inputquantidade" placeholder="quantidade" ng-model="vm.quantidade">
+                              </td>
+                              <td>
+                                <button type="button" class="btn btn-primary btn-xs" ng-click="vm.materialAdd(vm.materialId, vm.quantidade)">Adicionar</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Material</th>
+                              <th style="width:10%;">Quantidade</th>
+                              <th style="width:15%;">Preço</th>
+                              <th style="width:15%;">Total</th>
+                              <th style="width:20%;">Ações</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="material in vm.instalacao.materiais | orderBy : 'nome'">
+                              <td>{{material.nome}}</td>
+                              <td>{{material.quantidade}}</td>
+                              <td>{{material.valor | currency : "R$ " : 2}}</td>
+                              <td>{{material.valor*material.quantidade | currency : "R$ " : 2}}</td>
+                              <td>
+                                <button type="button" class="btn btn-primary btn-xs" ng-click="vm.showTabUpdate(material)">Alterar</button>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="vm.materialDelete(material)">Excluir</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              <!--END MODAL-->
+
+              <div class="box-body table-responsive no-padding col-sm-12">
+                <table class="table table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Material</th>
+                      <th>Quantidade</th>
+                      <th>Preço</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="item in vm.instalacao.materiais | orderBy : 'nome'">
+                      <td>{{item.nome}}</td>
+                      <td>{{item.quantidade}}</td>
+                      <td>{{item.valor | currency : "R$ " : 2}}</td>
+                      <td>{{item.valor*item.quantidade | currency : "R$ " : 2}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+      </div>
+
+
+      <!-- /.box-footer -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary" ng-click="vm.create()" ng-if="vm.tabCreate">Salvar</button>
+        <button type="submit" class="btn btn-primary" ng-click="vm.update()" ng-if="vm.tabBaixa">Baixar</button>
+        <button type="submit" class="btn btn-info" ng-click="vm.update()" ng-if="vm.tabUpdate">Alterar</button>
+        <button type="submit" class="btn btn-danger" ng-click="vm.delete()" ng-if="vm.tabDelete">Excluir</button>
+        <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Cancelar</button>
+      </div>
+      <!-- /.box-footer -->
+      </form>
+
+      </form>
+    </div>
+  </div>
+  </div>
+
+
+
+</section>

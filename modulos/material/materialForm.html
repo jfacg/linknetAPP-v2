@@ -1,0 +1,48 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">MATERIAL</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <!--NOME-->
+            <div class="form-group ">
+              <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputNome" placeholder="Nome" ng-model="vm.material.nome" ng-readonly="vm.tabDelete"
+                  ng-change="vm.material.nome = (vm.material.nome | uppercase)" ng-readonly="vm.tabDelete">
+              </div>
+            </div>
+            <!--DESCRIÇÃO-->
+            <div class="form-group ">
+              <label for="inputDescricao" class="col-sm-2 control-label">Descrição</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição" ng-model="vm.material.descricao" ng-readonly="vm.tabDelete"
+                  ng-change="vm.material.descricao = (vm.material.descricao | uppercase)" ng-readonly="vm.tabDelete">
+              </div>
+            </div>
+            <!--VALOR-->
+            <div class="form-group">
+              <label for="inputValor" class="col-sm-2 control-label">Valor</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputValor" placeholder="R$ 0,00" ng-model="vm.material.valor" ng-readonly="vm.tabDelete" ui-money-mask="2">
+              </div>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" ng-click="vm.create()" ng-if="vm.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="vm.update()" ng-if="vm.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-danger" ng-click="vm.delete()" ng-if="vm.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Cancelar</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

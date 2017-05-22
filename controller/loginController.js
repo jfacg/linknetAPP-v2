@@ -1,6 +1,6 @@
 var app = angular.module('linknetControllers',[]);
 
-app.controller('LoginController',function(UserService,Storage,$state,AuthTokenFactory){
+app.controller('LoginController',function(UserService,Storage,$state,AuthTokenFactory, DecodeFactory){
     const vm = this
     vm.usuario = {}
 
@@ -8,8 +8,10 @@ app.controller('LoginController',function(UserService,Storage,$state,AuthTokenFa
       vm.loginError=null;
       UserService.login(vm.usuario)
       .then(function(response){
-              AuthTokenFactory.setToken(response.data.token);
-              Storage.save('username',response.data.username);
+              AuthTokenFactory.setToken(response.data);
+              var decoded = DecodeFactory.decode()
+              Storage.save('usuario',decoded.usuario);
+              Storage.save('tipo',decoded.tipo);
               Storage.save('loggedIn',true);
               $state.go('home');
             },

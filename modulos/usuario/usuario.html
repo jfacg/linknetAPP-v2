@@ -10,35 +10,36 @@
 <section class="content">
   <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-      <li ng-if="userCtrl.tabList" ng-class="{active: userCtrl.tabList}">
+      <li ng-if="vm.tabList" ng-class="{active: vm.tabList}">
           <a href data-target="#tabList" data-toggle="tab">
           <i class="fa fa-bars"></i> Listar
         </a>
       </li>
-      <li ng-if="userCtrl.tabCreate">
+      <li ng-if="vm.tabCreate">
           <a href data-target="#tabCreate" data-toggle="tab">
           <i class="fa fa-plus"></i> Criar
         </a>
       </li>
-      <li ng-if="userCtrl.tabUpdate" ng-class="{active: userCtrl.tabUpdate}">
+      <li ng-if="vm.tabUpdate" ng-class="{active: vm.tabUpdate}">
           <a href data-target="#tabUpdate" data-toggle="tab">
           <i class="fa fa-pencil"></i> Alterar
         </a>
       </li>
-      <li ng-if="userCtrl.tabDelete" ng-class="{active: userCtrl.tabDelete}">
+      <li ng-if="vm.tabDelete" ng-class="{active: vm.tabDelete}">
           <a href data-target="#tabDelete" data-toggle="tab">
           <i class="fa fa-trash-o"></i> Excluir
         </a>
       </li>
     </ul>
     <div class="tab-content">
-      <div class="tab-pane" id="tabList" ng-include="'view/usuario/usuarioList.html'" ng-if="userCtrl.tabList"
-          ng-class="{active: userCtrl.tabList}"></div>
-      <div class="tab-pane" id="tabCreate" ng-include="'view/usuario/usuarioForm.html'" ng-if="userCtrl.tabCreate"></div>
-      <div class="tab-pane" id="tabUpdate" ng-include="'view/usuario/usuarioForm.html'"
-          ng-class="{active: userCtrl.tabUpdate}" ng-if="userCtrl.tabUpdate"></div>
-      <div class="tab-pane" id="tabDelete" ng-include="'view/usuario/usuarioForm.html'"
-          ng-class="{active: userCtrl.tabDelete}" ng-if="userCtrl.tabDelete"></div>
+      <div class="tab-pane" id="tabList" ng-include="'modulos/usuario/usuarioList.html'" ng-if="vm.tabList"
+          ng-class="{active: vm.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'modulos/usuario/usuarioForm.html'" ng-if="vm.tabCreate"></div>
+      
+      <div class="tab-pane" id="tabUpdate" ng-include="'modulos/usuario/usuarioForm.html'"
+          ng-class="{active: vm.tabUpdate}" ng-if="vm.tabUpdate"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'modulos/usuario/usuarioForm.html'"
+          ng-class="{active: vm.tabDelete}" ng-if="vm.tabDelete"></div>
     </div>
   </div>
 </section>
