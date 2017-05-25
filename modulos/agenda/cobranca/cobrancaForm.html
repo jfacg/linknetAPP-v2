@@ -1,0 +1,101 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cobranças</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <!--FORMULARIO-->
+            <form role="form">
+              <!--TIPO-->
+              <div class="form-group ">
+                <label class="col-sm-2 control-label">Tipo</label>
+                <div class="col-sm-3">
+                  <select class="form-control" ng-model="vm.cobraca.tipo" ng-disabled="vm.tabDelete">
+                    <option ng-repeat="tipo in vm.listaTipo" value={{tipo}} >{{tipo}}</option>
+                  </select>
+                </div>
+              </div>
+              <!--SOLICITANTE-->
+              <div class="form-group ">
+                <label for="inputCliente" class="col-sm-2 control-label">Cliente</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputCliente" placeholder="Cliente" ng-model="vm.cobranca.cliente"
+                    ng-readonly="vm.tabDelete" uppercase ng-change="vm.cobranca.cliente = (vm.cobranca.cliente | uppercase)">
+                </div>
+              </div>
+              <!--ENDERECO-->
+              <div class="form-group ">
+                <label for="inputEndereco" class="col-sm-2 control-label">Endereço</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputEndereco" placeholder="Endereço" ng-model="vm.cobranca.endereco" ng-readonly="vm.tabDelete"
+                    uppercase ng-change="vm.cobranca.endereco = (vm.cobranca.endereco | uppercase)">
+                </div>
+              </div>
+              <!--BAIRRO-->
+              <div class="form-group ">
+                <label for="inputBairro" class="col-sm-2 control-label">Bairro</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputBairro" placeholder="Bairro" ng-model="vm.cobranca.bairro" ng-readonly="vm.tabDelete"
+                    uppercase ng-change="vm.cobranca.bairro = (vm.cobranca.bairro | uppercase)">
+                </div>
+              </div>
+              <!--CONTATO-->
+              <div class="form-group ">
+                <label for="inputContato" class="col-sm-2 control-label">Contato</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputContato" placeholder="(99) 99999-9999" ng-model="vm.cobranca.contato" ng-readonly="vm.tabDelete"
+                     ui-br-phone-number>
+                </div>
+              </div>
+              <!--OBSERVAÇÃO-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Observação</label>
+                <div class="col-sm-3">
+                  <textarea class="form-control" rows="4" placeholder="Observação" ng-model="vm.cobranca.observacao" ng-readonly="vm.tabDelete"
+                    uppercase ng-change="vm.cobranca.observacao = (vm.cobranca.observacao | uppercase)">
+                    </textarea>
+                </div>
+              </div>
+              <!-- select TECNICO-->
+              <div class="form-group ">
+                <label class="col-sm-2 control-label">Técnico</label>
+                <div class="col-sm-3">
+                  <select class="form-control" ng-model="vm.cobranca.tecnico" ng-disabled="vm.tabDelete">
+                      <option ng-repeat="item in vm.usuarios" value={{item}} >{{item}}</option>
+                    </select>
+                </div>
+              </div>
+              <!--DATA cobranca-->
+              <div class="form-group ">
+                <label for="inputDatacobranca" class="col-sm-2 control-label">Data</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control" id="inputDatacobranca" ng-model="vm.cobranca.dataAgenda" ng-readonly="vm.tabDelete">
+                </div>
+              </div>
+              <!--VALOR-->
+              <div class="form-group">
+                <label for="inputValor" class="col-sm-2 control-label">Valor</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" id="inputValor" placeholder="R$ 0,00" ng-model="vm.cobranca.valor" ng-readonly="vm.tabDelete" ui-money-mask="2">
+                </div>
+              </div>
+          </div>
+        </div>
+          <!-- /.box-footer -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" ng-click="vm.create()" ng-if="vm.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="vm.update()" ng-if="vm.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-danger" ng-click="vm.delete()" ng-if="vm.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Cancelar</button>
+          </div>
+          <!-- /.box-footer -->
+          </form>
+      </div>
+    </div>
+  </div>
+</section>
