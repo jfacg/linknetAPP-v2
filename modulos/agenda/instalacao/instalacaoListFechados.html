@@ -23,7 +23,7 @@
                 <th>Endereco</th>
                 <th>Contato</th>
                 <th>Data</th>
-                <th>Técnico</th>
+                <th>Vendedor</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -33,7 +33,7 @@
                 <td>{{item.endereco}}</td>
                 <td>{{item.contato}}</td>
                 <td>{{item.dataAgenda | date: "dd/MM/yyyy"}}</td>
-                <td>{{item.tecnico}}</td>
+                <td>{{item.vendedor}}</td>
                 <td>
                   <button type="button" class="btn btn-danger btn-xs" ng-click="vm.showVisualizar(item)">Visualizar</button>
                 </td>

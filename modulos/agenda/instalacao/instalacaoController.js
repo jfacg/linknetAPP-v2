@@ -100,7 +100,7 @@
         itemLista = { nome: result.nome, descricao: result.descricao, valor: result.valor, quantidade: quantidade }
         vm.instalacao.materiais.push(itemLista)
       });
-      
+
     }
 
     vm.showTabUpdate = function (instalacao) {
@@ -135,6 +135,7 @@
 
     vm.voltar = function () {
       tabsInstalacao.show(vm, {  tabListFechados: true, tabListAbertos: true, tabCreate: true  })
+      vm.refresh()
     }
 
     vm.refresh()
