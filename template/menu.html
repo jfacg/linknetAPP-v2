@@ -30,6 +30,7 @@
       <ul class="treeview-menu">
         <li><a ui-sref="home.usuario"><i class="fa fa-users"></i> Usuário</a></li>
         <li><a ui-sref="home.material"><i class="fa fa-paperclip"></i> Material</a></li>
+        <li><a ui-sref="home.caixa"><i class="fa fa-circle-o"></i> Caixa</a></li>
         <!--<li><a href=""><i class="fa fa-circle-o"></i> Clientes</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Fornecedores</a></li> -->
       </ul>
@@ -44,16 +45,28 @@
             </span>
           </a>
       <ul class="treeview-menu">
-        <!-- Caixa -->
-        <li><a ui-sref="home.caixa"><i class="fa fa-circle-o"></i> Caixa</a></li>
         <!-- Crédito -->
         <li><a ui-sref="home.credito"><i class="fa fa-circle-o"></i> Crédito</a></li>
         <!-- Débito -->
         <li><a ui-sref="home.debito"><i class="fa fa-circle-o"></i> Débito</a></li>
-        <!--Títulos em aberto-->
-        <li><a ui-sref="home.titulo"><i class="fa fa-circle-o"></i> Títulos Abertos</a></li>
         <!-- Resumo -->
         <li><a ui-sref="home.resumo"><i class="fa fa-circle-o"></i> Resumo</a></li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a href="">
+            <i class="fa fa-files-o"></i>
+            <span>Título</span>
+            <span class="pull-right-container">
+              <span class="fa fa-angle-left pull-right"></span>
+            </span>
+          </a>
+      <ul class="treeview-menu">
+        <!-- Caixa -->
+        <li><a ui-sref="home.titulo"><i class="fa fa-circle-o"></i> Vencidos</a></li>
+        <!-- <li><a ui-sref="home.instalacao"><i class="fa  fa-user-plus"></i> Instalações</a></li>
+        <li><a ui-sref="home.reparo"><i class="fa  fa-cogs"></i> Reparos</a></li>
+        <li><a ui-sref="home.cobranca"><i class="fa  fa-money"></i> Cobranças</a></li> -->
       </ul>
     </li>
     <li class="treeview">

@@ -1,13 +1,14 @@
 <section class="content">
+
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">TÍTULOS</h3>
+          <h3 class="box-title">TÍTULOS VENCIDOS</h3>
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" 
+              <input type="text" name="table_search" class="form-control pull-right"
                 ng-model="listar" placeholder="Search">
 
               <div class="input-group-btn">
@@ -26,28 +27,19 @@
                 <th>Data</th>
                 <th>Valor</th>
                 <th>Contato</th>
-                <th>Endereço</th>
-                <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="titulo in vm.titulos | orderBy: 'data'">
+              <tr ng-repeat="titulo in vm.titulosVencidos | filter:listar | orderBy: 'datavenc'" >
                 <td>{{titulo.nome}}</td>
                 <td>{{titulo.datavenc | date: "dd/MM/yyyy"}}</td>
                 <td>{{titulo.calculado | currency : "R$ " : 2}}</td>
                 <td>{{titulo.celular}}</td>
-                <td>{{titulo.endereco}}</td>
-                <td>{{titulo.status}}</td>
+                <td><button type="button" class="btn btn-primary btn-xs" ng-click="vm.tabsAgendar(titulo)">Agendar</button></td>
               </tr>
             </tbody>
           </table>
-          <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right" ng-model="vm.page" ng-if="vm.needPagination">
-              <li><a href="" ng-click="vm.prev()" ng-if="vm.prev">Prev</a></li>
-              <li ng-repeat="pages in vm.pagesArray"><a href="" ng-click="vm.selectPage(pages)">{{pages}}</a></li>
-              <li><a href="" ng-click="vm.next()" ng-if="vm.next">Next</a></li>
-            </ul>
-          </div>
         </div>
         <!-- /.box-body -->
       </div>

@@ -38,13 +38,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     //HOME
     .state('home', {
       url: '/home',
-      templateUrl: "view/home/home.html",
+      templateUrl: "modulos/home/home.html",
+      controller: 'HomeController',
+      controllerAs: 'vm',
       authenticate: true
     })
     //DASHBOARD
     .state('home.dashboard', {
       url: '/dashboard',
       templateUrl: "view/dashboard/dashboard.html",
+      authenticate: true
+    })
+    //TITULO
+    .state('home.titulo', {
+      url: '/titulo',
+      templateUrl: "modulos/titulo/titulo.html",
+      controller: 'TituloController',
+      controllerAs: 'vm',
       authenticate: true
     })
     //FINANCEIRO
@@ -67,13 +77,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: "view/debito/debito.html",
       controller: 'DebitoController',
       controllerAs: 'debCtrl',
-      authenticate: true
-    })
-    .state('home.titulo', {
-      url: '/titulo',
-      templateUrl: "view/titulo/titulo.html",
-      controller: 'TituloController',
-      controllerAs: 'vm',
       authenticate: true
     })
     .state('home.resumo', {

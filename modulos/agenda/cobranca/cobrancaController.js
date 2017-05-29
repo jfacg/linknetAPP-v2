@@ -25,6 +25,7 @@
       $http.get(urlCobranca).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
           response.data[i].dataAgenda = new Date(response.data[i].dataAgenda)
+          response.data[i].dataVencimento = new Date(response.data[i].dataVencimento)
           if (response.data[i].baixado === 'N' && response.data[i].excluido === 'N') {
             vm.cobrancasAbertas.push(response.data[i])
           }
