@@ -1,0 +1,30 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cobrança</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="box-body">
+          <dl class="dl-horizontal">
+            <dt>Tipo:</dt><dd>{{vm.credito.tipo}}</dd>
+            <dt>Cliente:</dt><dd>{{vm.credito.cliente}}</dd>
+            <dt>Titulo:</dt><dd>{{vm.credito.titulo}}</dd>
+            <dt>Referência:</dt><dd>{{vm.credito.mes}}</dd>
+            <dt>Valor:</dt><dd>{{vm.credito.valor}}</dd>
+            <dt>Descrição:</dt><dd>{{vm.credito.descricao}}</dd>
+            <dt>Responsável:</dt><dd>{{vm.credito.coletor}}</dd>
+            <dt>Data Vencimento:</dt><dd>{{vm.credito.dataVencimento | date: "dd/MM/yyyy"}}</dd>
+            <dt>Data Baixa:</dt><dd>{{vm.credito.dataBaixa | date: "dd/MM/yyyy"}}</dd>
+            <dt>Usuario:</dt><dd>{{vm.credito.usuario}}</dd>
+            <dt>Observações:</dt><dd>{{vm.credito.observacao}}</dd>
+          </dl>
+        </div>
+        <div class="box-footer">
+          <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Voltar</button>
+        </div>
+      </div>
+    </div>
+</section>

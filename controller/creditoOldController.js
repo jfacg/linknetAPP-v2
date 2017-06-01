@@ -1,5 +1,5 @@
 (function() {
-    angular.module('linknetApp').controller('CreditoController', [
+    angular.module('linknetApp').controller('CreditoOldController', [
         '$http',
         'tabs',
         'toastr',
@@ -10,7 +10,7 @@
     function CreditoController($http, tabs, toastr, UrlFactory) {
         const vm = this
         const url = UrlFactory;
-        const urlCredito = `${url}/credito`
+        const urlCredito = `${url}/creditoold`
         const urlCaixa = `${url}/caixa`
 
         vm.refresh = function() {

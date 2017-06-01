@@ -27,13 +27,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="caixa in caixaCtrl.caixas | orderBy : 'mes' | orderBy : 'ano'">
+              <tr ng-repeat="caixa in vm.caixas | orderBy : 'mes' | orderBy : 'ano'">
                 <td>{{caixa.nome}}</td>
                 <td>{{caixa.mes}}</td>
                 <td>{{caixa.ano}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-xs" ng-click="caixaCtrl.showTabUpdate(caixa)">Alterar</button>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="caixaCtrl.showTabDelete(caixa)" ng-disabled="true">Excluir</button>
+                  <button type="button" class="btn btn-primary btn-xs" ng-click="vm.showTabUpdate(caixa)">Alterar</button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="vm.showTabDelete(caixa)" ng-disabled="true">Excluir</button>
                 </td>
               </tr>
             </tbody>

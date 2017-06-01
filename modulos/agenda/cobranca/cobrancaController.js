@@ -99,11 +99,6 @@
       tabsCobranca.show(vm, { tabDelete: true })
     }
 
-    vm.showTabDelete = function (cobranca) {
-      vm.cobranca = cobranca
-      tabsCobranca.show(vm, { tabDelete: true })
-    }
-
     vm.showVisualizar = function (cobranca) {
       vm.cobranca = cobranca
       tabsCobranca.show(vm, { tabVisualizar: true })

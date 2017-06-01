@@ -14,7 +14,7 @@
 
               <div class="col-sm-2">
                 <input type="number" class="form-control" id="inputMes" placeholder="Mês"
-                  ng-model="caixaCtrl.caixa.mes">
+                  ng-model="vm.caixa.mes">
               </div>
             </div>
             <div class="form-group">
@@ -22,17 +22,17 @@
 
               <div class="col-sm-2">
                 <input type="number" class="form-control" id="inputAno" placeholder="Ano"
-                  ng-model="caixaCtrl.caixa.ano">
+                  ng-model="vm.caixa.ano">
               </div>
             </div>
 
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary" ng-click="caixaCtrl.create()" ng-if="caixaCtrl.tabCreate">Salvar</button>
-            <button type="submit" class="btn btn-info" ng-click="caixaCtrl.update()" ng-if="caixaCtrl.tabUpdate">Alterar</button>
-            <button type="submit" class="btn btn-default" ng-click="caixaCtrl.refresh()">Cancel</button>
-            <button type="submit" class="btn btn-danger" ng-click="caixaCtrl.delete()" ng-if="caixaCtrl.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-primary" ng-click="vm.create()" ng-if="vm.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="vm.update()" ng-if="vm.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Cancel</button>
+            <button type="submit" class="btn btn-danger" ng-click="vm.delete()" ng-if="vm.tabDelete">Excluir</button>
           </div>
           <!-- /.box-footer -->
         </form>

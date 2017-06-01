@@ -27,15 +27,17 @@
                 <th>Data</th>
                 <th>Valor</th>
                 <th>Contato</th>
+                <th>Bloqueado</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="titulo in vm.titulosVencidos | filter:listar | orderBy: 'datavenc'" >
-                <td>{{titulo.nome}}</td>
+                <td>{{titulo.nome | uppercase}}</td>
                 <td>{{titulo.datavenc | date: "dd/MM/yyyy"}}</td>
                 <td>{{titulo.calculado | currency : "R$ " : 2}}</td>
                 <td>{{titulo.celular}}</td>
+                <td>{{titulo.bloqueado | uppercase}}</td>
                 <td><button type="button" class="btn btn-primary btn-xs" ng-click="vm.tabsAgendar(titulo)">Agendar</button></td>
               </tr>
             </tbody>

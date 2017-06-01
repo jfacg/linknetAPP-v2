@@ -1,0 +1,86 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Dados do Crédito</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+          <div class="box-body">
+            <!--TIPO -->
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Tipo</label>
+              <div class="col-sm-3">
+                <select class="form-control" ng-model="vm.credito.tipo" ng-disabled="vm.tabDelete">
+                  <option ng-repeat="tipo in vm.listaTipo" value={{tipo}} >{{tipo}}</option>
+                </select>
+              </div>
+            </div>
+            <!--MES -->
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Mês</label>
+              <div class="col-sm-3">
+                <select class="form-control" ng-model="vm.credito.mes" ng-disabled="vm.tabDelete">
+                  <option ng-repeat="tipo in vm.listaMes" value={{tipo}} >{{tipo}}</option>
+                </select>
+              </div>
+            </div>
+            <!--CLIENTE -->
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Cliente</label>
+              <div class="col-sm-3">
+                <select class="form-control" ng-model="vm.credito.cliente" ng-disabled="vm.tabDelete">
+                  <option ng-repeat="item in vm.clientes | orderBy : 'nome'" value="{{item.nome}}">{{item.nome}}</option>
+                </select>
+              </div>
+            </div>
+            <!--VALOR  -->
+            <div class="form-group">
+              <label for="inputValor" class="col-sm-2 control-label">Valor</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputValor"
+                ng-model="vm.credito.valor" ng-readonly="vm.tabDelete" ui-money-mask="2">
+              </div>
+            </div>
+            <!--DESCRIÇÃO -->
+            <div class="form-group ">
+              <label for="inputDescricao" class="col-sm-2 control-label">Descrição</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputDescricao"
+                ng-model="vm.credito.descricao" ng-readonly="vm.tabDelete" uppercase>
+              </div>
+            </div>
+            <!--COLETOR -->
+            <div class="form-group ">
+              <label class="col-sm-2 control-label">Responsável</label>
+              <div class="col-sm-3">
+                <select class="form-control" ng-model="vm.credito.coletor" ng-disabled="vm.tabDelete">
+                  <option ng-repeat="item in vm.usuarios" value="{{item.nome}}">{{item.nome}}</option>
+                </select>
+              </div>
+            </div>
+            <!--CHECKBOX BAIXAR-->
+            <div class="form-group ">
+                <label class="col-sm-2 control-label">Repassado</label>
+                <div class="col-sm-1">
+                  <input type="checkbox" ng-model="vm.credito.repassado" ng-true-value="'S'">
+                </div>
+            </div>
+
+
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" ng-click="vm.create()" ng-if="vm.tabCreate">Salvar</button>
+            <button type="submit" class="btn btn-info" ng-click="vm.update()" ng-if="vm.tabUpdate">Alterar</button>
+            <button type="submit" class="btn btn-danger" ng-click="vm.delete()" ng-if="vm.tabDelete">Excluir</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.refresh()">Cancelar</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

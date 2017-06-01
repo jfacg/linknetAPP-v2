@@ -60,16 +60,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     //FINANCEIRO
     .state('home.caixa', {
       url: '/caixa',
-      templateUrl: "view/caixa/caixa.html",
+      templateUrl: "modulos/caixa/caixa.html",
       controller: 'CaixaController',
-      controllerAs: 'caixaCtrl',
+      controllerAs: 'vm',
       authenticate: true
     })
+    .state('home.creditoOld', {
+      url: '/creditoOld',
+      templateUrl: "view/credito/credito.html",
+      controller: 'CreditoOldController',
+      controllerAs: 'credCtrl',
+      authenticate: true
+    })
+    //CREDITO
     .state('home.credito', {
       url: '/credito',
-      templateUrl: "view/credito/credito.html",
+      templateUrl: "modulos/credito/credito.html",
       controller: 'CreditoController',
-      controllerAs: 'credCtrl',
+      controllerAs: 'vm',
       authenticate: true
     })
     .state('home.debito', {

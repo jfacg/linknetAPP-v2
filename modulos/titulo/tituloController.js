@@ -21,11 +21,9 @@
           tabsTitulo.show(vm, { tabList: true })
           vm.titulo = {}
           vm.titulos = []
-          vm.usuarios = []
           vm.titulosVencidos = []
+          vm.usuarios = []
           vm.cobranca = {}
-          // var dataAtual = new Date()
-          var dataAtual = moment().format()
           $http.get(urlTitulos).then(function (response) {
               vm.titulos = response.data;
               vm.qtVencidos = 0
