@@ -20,6 +20,14 @@
                   </select>
                 </div>
               </div>
+              <!--MES-->
+              <div class="form-group ">
+                <label for="inputCliente" class="col-sm-2 control-label">Referência</label>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" ng-model="vm.cobranca.mes"
+                    ng-readonly="vm.tabDelete || vm.tabUpdate" uppercase >
+                </div>
+              </div>
               <!--SOLICITANTE-->
               <div class="form-group ">
                 <label for="inputCliente" class="col-sm-2 control-label">Cliente</label>
@@ -61,11 +69,11 @@
                     </textarea>
                 </div>
               </div>
-              <!-- select TECNICO-->
+              <!-- select COLETOR-->
               <div class="form-group ">
-                <label class="col-sm-2 control-label">Técnico</label>
+                <label class="col-sm-2 control-label">Coletor</label>
                 <div class="col-sm-3">
-                  <select class="form-control" ng-model="vm.cobranca.tecnico" ng-disabled="vm.tabDelete">
+                  <select class="form-control" ng-model="vm.cobranca.coletor" ng-disabled="vm.tabDelete">
                       <option ng-repeat="item in vm.usuarios" value={{item}} >{{item}}</option>
                     </select>
                 </div>

@@ -20,9 +20,9 @@
             </div>
             <!--MES -->
             <div class="form-group ">
-              <label class="col-sm-2 control-label">Mês</label>
+              <label class="col-sm-2 control-label">Referência</label>
               <div class="col-sm-3">
-                <select class="form-control" ng-model="vm.credito.mes" ng-disabled="vm.tabDelete">
+                <select class="form-control" ng-model="vm.credito.mes" ng-disabled="vm.tabDelete || vm.tabUpdate">
                   <option ng-repeat="tipo in vm.listaMes" value={{tipo}} >{{tipo}}</option>
                 </select>
               </div>
@@ -34,6 +34,14 @@
                 <select class="form-control" ng-model="vm.credito.cliente" ng-disabled="vm.tabDelete">
                   <option ng-repeat="item in vm.clientes | orderBy : 'nome'" value="{{item.nome}}">{{item.nome}}</option>
                 </select>
+              </div>
+            </div>
+            <!--DESCRIÇÃO -->
+            <div class="form-group ">
+              <label for="inputDescricao" class="col-sm-2 control-label">Cliente Nome</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputDescricao"
+                ng-model="vm.credito.clienteNome" ng-readonly="vm.tabDelete || vm.tabUpdate" ng-if="vm.tabUpdate" uppercase>
               </div>
             </div>
             <!--VALOR  -->

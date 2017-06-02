@@ -13,34 +13,34 @@
     const url = UrlFactory
     const urlCobranca = `${url}/cobranca`
     const urlUsuario = `${url}/usuario`
+    const urlCredito = `${url}/credito`
     const decoded = DecodeFactory.decode()
 
     vm.refresh = function () {
       tabsCobranca.show(vm, { tabListFechados: true, tabListAbertos: true, tabCreate: true })
+      vm.credito = {}
       vm.cobranca = {}
+      vm.cobrancas = []
       vm.cobrancasAbertas = []
       vm.cobrancasFechadas = []
       vm.usuarios = []
       getLista()
       $http.get(urlCobranca).then(function (response) {
-        for (var i = 0; i < response.data.length; i++) {
-          response.data[i].dataAgenda = new Date(response.data[i].dataAgenda)
-          response.data[i].dataVencimento = new Date(response.data[i].dataVencimento)
-          if (response.data[i].baixado === 'N' && response.data[i].excluido === 'N') {
-            vm.cobrancasAbertas.push(response.data[i])
+        vm.cobrancas = response.data
+        for (var i = 0; i < vm.cobrancas.length; i++) {
+          vm.cobrancas[i].dataAgenda = new Date(vm.cobrancas[i].dataAgenda)
+          vm.cobrancas[i].dataVencimento = new Date(vm.cobrancas[i].dataVencimento)
+          if (vm.cobrancas[i].baixado === 'N' && vm.cobrancas[i].excluido === 'N') {
+            vm.cobrancasAbertas.push(vm.cobrancas[i])
           }
-          if (response.data[i].baixado === 'S' && response.data[i].excluido === 'N') {
-            vm.cobrancasFechadas.push(response.data[i])
+          if (vm.cobrancas[i].baixado === 'S' && vm.cobrancas[i].excluido === 'N') {
+            vm.cobrancasFechadas.push(vm.cobrancas[i])
           }
         }
       })
 
       $http.get(urlUsuario).then(function (response) {
-        for (var i = 0; i < response.data.length; i++) {
-          if (response.data[i].excluido === 'N') {
-            vm.usuarios.push(response.data[i].nome)
-          }
-        }
+        vm.usuarios = response.data
       })
     }
 
@@ -72,15 +72,35 @@
     vm.update = function () {
       if (vm.cobranca.baixado === 'S') {
         vm.cobranca.dataBaixa = new Date()
+        vm.cobranca.usuario = decoded.usuario
+
+        vm.credito.tipo = vm.cobranca.tipo
+        vm.credito.mes = vm.cobranca.mes
+        vm.credito.descricao = vm.cobranca.descricao
+        vm.credito.cliente = vm.cobranca.cliente
+        vm.credito.valor = vm.cobranca.valor
+        vm.credito.coletor = vm.cobranca.coletor
+        vm.credito.repassado = 'S'
+        vm.credito.observacao = vm.cobranca.observacao
+        vm.credito.titulo = vm.cobranca.titulo
+        vm.credito.dataVencimento = vm.cobranca.dataVencimento
+        vm.credito.usuario = decoded.usuario
+        vm.credito.dataBaixa = new Date()
       }
+
       const updateUrl = `${urlCobranca}/${vm.cobranca._id}`
       $http.put(updateUrl, vm.cobranca).then(function (response) {
         toastr.success('Operação realizada com sucesso!!', 'Success')
         vm.refresh()
       }).catch(function (response) {
         toastr.error(response.data.errors, 'Error')
-        console.log(response.data.errors);
+      })
 
+      $http.post(urlCredito, vm.credito).then(function(response) {
+          toastr.success('Operação realizada com sucesso!!', 'Success')
+          vm.refresh()
+      }).catch(function(response) {
+          toastr.error(response.data.errors, 'Error');
       })
     }
 

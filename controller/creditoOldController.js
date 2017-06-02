@@ -14,7 +14,7 @@
         const urlCaixa = `${url}/caixa`
 
         vm.refresh = function() {
-            tabs.show(vm, { tabList: true, tabCreate: true })
+            tabs.show(vm, { tabList: true })
             $http.get(urlCaixa).then(function(response) {
                 geradorListas()
                 vm.caixas = response.data

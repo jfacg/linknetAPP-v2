@@ -23,6 +23,7 @@
                 <th>Contato</th>
                 <th>Data</th>
                 <th>Valor</th>
+                <th>Título</th>
                 <th>Responsável</th>
                 <th>Ações</th>
               </tr>
@@ -33,7 +34,8 @@
                 <td>{{item.contato}}</td>
                 <td>{{item.dataAgenda | date: "dd/MM/yyyy"}}</td>
                 <td>{{item.valor | currency : "R$ " : 2}}</td>
-                <td>{{item.tecnico}}</td>
+                <td>{{item.titulo}}</td>
+                <td>{{item.coletor}}</td>
                 <td>
                   <button type="button" class="btn btn-warning btn-xs" ng-click="vm.showTabBaixa(item)">Baixar</button>
                   <button type="button" class="btn btn-primary btn-xs" ng-click="vm.showTabUpdate(item)">Alterar</button>

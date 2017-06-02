@@ -101,6 +101,7 @@
             vm.cobranca.tipo = 'MENSALIDADE'
             vm.cobranca.valor = titulo.valor
             vm.cobranca.titulo = titulo.titulo
+            vm.cobranca.mes = titulo.referencia
             vm.cobranca.dataVencimento = titulo.datavenc
             vm.cobranca.dataAgenda = titulo.dataAgenda
             vm.cobranca.observacao = titulo.observacao

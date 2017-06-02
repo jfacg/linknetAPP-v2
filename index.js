@@ -134,11 +134,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       controllerAs: 'vm',
       authenticate: true
     })
-    .state('home.agenda', {
-      url: '/agenda',
-      templateUrl: "modulos/agenda/agenda.html",
-      controller: 'AgendaController',
-      controllerAs: 'vm',
-      authenticate: true
-    })
 })
